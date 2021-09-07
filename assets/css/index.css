@@ -13,6 +13,17 @@
 
 body {
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 2;
+}
+
+h2 {
+    font-size: 1.8rem;
 }
 
 
@@ -27,6 +38,10 @@ body {
 
 .l-block {
     padding: 0 1rem;
+}
+
+.l-block--padding {
+    padding: 2rem 1rem;
 }
 
 .c-header {
@@ -515,11 +530,86 @@ body {
     width: 100%;
 }
 
+.c-contact {
+    display: grid;
+    grid-template-columns: auto 16rem;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    max-width: 1000px;
+    padding: 2rem 0;
+}
+
+.c-contact__image {
+    width: 100%;
+    max-width: 400px;
+    align-self: center;
+    justify-self: center;
+}
+
+.c-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-form__title {
+    font-size: 1.5rem;
+    color: var(--blue);
+}
+
+.c-submit {
+    align-self: flex-start;
+    min-width: 100px;
+}
+
+.c-form__wrapper {
+    width: 100%;
+    max-width: 16rem;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+}
+
+.c-form__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    position: relative;
+}
+
+.c-form__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0.5rem, -50%);
+    background-color: white;
+    padding: 0 0.6rem;
+    font-size: 1rem;
+    font-family: Nunito, sans-serif;
+    color: rgb(46, 46, 46);
+}
+
+.c-form__input, .c-form__textarea {
+    padding: 0.8rem 0.8rem;
+    padding-top: 0.9rem;
+    border: 1px solid rgb(177, 177, 177);
+    font-family: Nunito, sans-serif;
+}
+
+.c-form__textarea {
+    resize: vertical;
+    min-height: 100px;
+}
 
 /* Media Queries */
 
 @media screen and (min-width: 1200px) {
-    
+    .c-contact {
+        padding: 4rem;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -571,7 +661,17 @@ body {
 }
 
 @media screen and (max-width: 500px) {
-    
+    .c-contact {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .c-contact__image {
+        max-width: 400px;
+        width: 100%;
+        padding-left: 25vw;
+        margin-top: 4rem;
+    }
 }
 
 @media screen and (max-width: 400px) {
