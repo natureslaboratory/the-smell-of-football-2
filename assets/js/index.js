@@ -34,7 +34,31 @@
         Counter.prototype.setDisplay = function (value) {
             this.counterDisplay.innerHTML = value.toString();
         };
+        Counter.prototype.resetCount = function () {
+            this.count = 0;
+            this.setDisplay(0);
+        };
         return Counter;
+    }());
+
+    var AddToBasket = /** @class */ (function () {
+        /**
+         *
+         */
+        function AddToBasket(node) {
+            this.node = node;
+            this.counter = new Counter(node.getElementsByClassName("c-purchase__counter")[0]);
+            this.addButton = node.getElementsByClassName("c-purchase__purchase-button")[0];
+            this.addEventListeners();
+        }
+        AddToBasket.prototype.addEventListeners = function () {
+            var _this = this;
+            this.addButton.addEventListener("click", function () {
+                console.log(_this.counter.count);
+                _this.counter.resetCount();
+            });
+        };
+        return AddToBasket;
     }());
 
     var hamburgerContainer = document.getElementById("hamburger-container");
@@ -69,10 +93,9 @@
             }
         });
     }
-    var counters = Array.from(document.getElementsByClassName("c-purchase__counter"));
-    counters.forEach(function (c) {
-        console.log(c);
-        new Counter(c);
+    var addToBaskets = Array.from(document.getElementsByClassName("c-purchase"));
+    addToBaskets.forEach(function (a) {
+        new AddToBasket(a);
     });
 
 }());

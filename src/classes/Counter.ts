@@ -1,10 +1,12 @@
 class Counter
 {
-    node: HTMLElement;
-    counterPlus: HTMLElement;
-    counterMinus: HTMLElement;
-    counterDisplay: HTMLElement;
-    count = 0;
+    private node: HTMLElement;
+    private counterPlus: HTMLElement;
+    private counterMinus: HTMLElement;
+    private counterDisplay: HTMLElement;
+    public count = 0;
+
+
     /** Pass in c-purchase__counter
      * 
      */
@@ -16,7 +18,7 @@ class Counter
         this.addEventListeners(); 
     }
 
-    addEventListeners()
+    private addEventListeners()
     {
         this.counterPlus.addEventListener("click", () => {
             this.incrementCount();
@@ -27,13 +29,13 @@ class Counter
         })
     }
 
-    incrementCount()
+    private incrementCount()
     {
         this.count++;
         this.setDisplay(this.count);
     }
 
-    decrementCount()
+    private decrementCount()
     {
         if (this.count > 0) {
             this.count--;
@@ -41,9 +43,15 @@ class Counter
         }
     }
 
-    setDisplay(value: number)
+    private setDisplay(value: number)
     {
         this.counterDisplay.innerHTML = value.toString();
+    }
+
+    public resetCount()
+    {
+        this.count = 0;
+        this.setDisplay(0);
     }
 }
 

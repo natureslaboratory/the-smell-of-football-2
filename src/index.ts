@@ -1,3 +1,4 @@
+import AddToBasket from "./classes/AddToBasket";
 import Counter from "./classes/Counter";
 
 const hamburgerContainer = document.getElementById("hamburger-container");
@@ -36,9 +37,9 @@ if (hamburgerButton && hamburgerMenu) {
 }
 
 
-const counters = Array.from(document.getElementsByClassName("c-purchase__counter") as HTMLCollectionOf<HTMLElement>);
+const addToBaskets = Array.from(document.getElementsByClassName("c-purchase") as HTMLCollectionOf<HTMLElement>);
 
-counters.forEach(c => {
-    console.log(c);
-    new Counter(c);
+
+addToBaskets.forEach(a => {
+    new AddToBasket(a);
 })
