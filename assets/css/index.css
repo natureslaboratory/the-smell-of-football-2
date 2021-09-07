@@ -75,6 +75,7 @@ h2 {
 
 .c-socials a {
     max-width: 25px;
+    width: 100%;
 }
 
 .c-socials a img {
@@ -522,8 +523,7 @@ h2 {
 }
 
 .c-logos a {
-    max-width: 23px;
-    width: 100%;
+    width: 23px;
 }
 
 .c-logos a img {
