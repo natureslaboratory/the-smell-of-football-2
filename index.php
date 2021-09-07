@@ -43,9 +43,9 @@
                 <h3>GET YOUR COPY NOW - £14.99</h3>
                 <div class="c-purchase__options">
                     <div class="c-purchase__counter">
-                        <div class="c-purchase__counter-button">-</div>
+                        <button class="c-purchase__counter-button c-purchase__counter-button--minus">-</button>
                         <div class="c-purchase__counter-count">0</div>
-                        <div class="c-purchase__counter-button">+</div>
+                        <button class="c-purchase__counter-button c-purchase__counter-button--plus">+</button>
                     </div>
                     <button class="c-button c-purchase__purchase-button">Add To Basket</button>
                     <p>(P&P £2.99)</p>

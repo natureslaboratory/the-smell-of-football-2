@@ -1,6 +1,42 @@
 (function () {
     'use strict';
 
+    var Counter = /** @class */ (function () {
+        /** Pass in c-purchase__counter
+         *
+         */
+        function Counter(node) {
+            this.count = 0;
+            this.counterPlus = node.getElementsByClassName("c-purchase__counter-button--plus")[0];
+            this.counterMinus = node.getElementsByClassName("c-purchase__counter-button--minus")[0];
+            this.counterDisplay = node.getElementsByClassName("c-purchase__counter-count")[0];
+            this.addEventListeners();
+        }
+        Counter.prototype.addEventListeners = function () {
+            var _this = this;
+            this.counterPlus.addEventListener("click", function () {
+                _this.incrementCount();
+            });
+            this.counterMinus.addEventListener("click", function () {
+                _this.decrementCount();
+            });
+        };
+        Counter.prototype.incrementCount = function () {
+            this.count++;
+            this.setDisplay(this.count);
+        };
+        Counter.prototype.decrementCount = function () {
+            if (this.count > 0) {
+                this.count--;
+                this.setDisplay(this.count);
+            }
+        };
+        Counter.prototype.setDisplay = function (value) {
+            this.counterDisplay.innerHTML = value.toString();
+        };
+        return Counter;
+    }());
+
     var hamburgerContainer = document.getElementById("hamburger-container");
     var hamburgerButton = document.getElementById("hamburger-button");
     var hamburgerMenu = document.getElementById("hamburger-menu");
@@ -33,5 +69,10 @@
             }
         });
     }
+    var counters = Array.from(document.getElementsByClassName("c-purchase__counter"));
+    counters.forEach(function (c) {
+        console.log(c);
+        new Counter(c);
+    });
 
 }());

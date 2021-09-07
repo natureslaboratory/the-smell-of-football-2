@@ -1,3 +1,5 @@
+import Counter from "./classes/Counter";
+
 const hamburgerContainer = document.getElementById("hamburger-container");
 const hamburgerButton = document.getElementById("hamburger-button");
 const hamburgerMenu = document.getElementById("hamburger-menu");
@@ -32,3 +34,11 @@ if (hamburgerButton && hamburgerMenu) {
         }
     })
 }
+
+
+const counters = Array.from(document.getElementsByClassName("c-purchase__counter") as HTMLCollectionOf<HTMLElement>);
+
+counters.forEach(c => {
+    console.log(c);
+    new Counter(c);
+})

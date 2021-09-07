@@ -4,7 +4,7 @@
     --red: #d2232d;
     --green: #3b9f45;
     --teal: #008aa1;
-    --pale-teal: #e5f3f5;
+    --pale-teal: #cfe6e4;
     --other-pale-teal: #e6f1ec;
     
     --dark-grey: #262626;
@@ -246,6 +246,8 @@ h2 {
 .c-purchase__counter-button {
     background-color: var(--teal);
     color: white;
+    border: none;
+    cursor: pointer;
 }
 
 .c-button {
