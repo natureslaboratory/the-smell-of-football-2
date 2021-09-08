@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/jackbarber/football.jackbarber.co.uk/
+    - /bin/cp -R * $DEPLOYPATH
