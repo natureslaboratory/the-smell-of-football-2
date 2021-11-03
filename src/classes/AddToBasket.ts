@@ -10,7 +10,7 @@ export default class AddToBasket
      */
     constructor(node: HTMLElement) {
         this.node = node;
-        this.counter = new Counter(node.getElementsByClassName("c-purchase__counter")[0] as HTMLElement, node.getElementsByClassName("c-purchase__count-count-input")[0] as HTMLInputElement);
+        this.counter = new Counter(node.getElementsByClassName("c-purchase__counter")[0] as HTMLElement, node.getElementsByClassName("c-purchase__count-count-input")[0] as HTMLInputElement, 1, 100);
         this.addButton = node.getElementsByClassName("c-purchase__purchase-button")[0] as HTMLButtonElement;
         this.addEventListeners();
     }

@@ -5,15 +5,21 @@
         /** Pass in c-purchase__counter
          *
          */
-        function Counter(node, hiddenInput) {
+        function Counter(node, hiddenInput, minimumCount, maximumCount) {
             if (hiddenInput === void 0) { hiddenInput = null; }
+            if (minimumCount === void 0) { minimumCount = 0; }
+            if (maximumCount === void 0) { maximumCount = 1000; }
             this.count = 0;
             this.counterPlus = node.getElementsByClassName("c-purchase__counter-button--plus")[0];
             this.counterMinus = node.getElementsByClassName("c-purchase__counter-button--minus")[0];
             this.counterDisplay = node.getElementsByClassName("c-purchase__counter-count")[0];
+            this.minimumCount = minimumCount;
+            this.count = minimumCount;
+            this.maximumCount = maximumCount;
             if (hiddenInput) {
                 this.hiddenInput = hiddenInput;
             }
+            this.setDisplay(this.minimumCount);
             this.addEventListeners();
         }
         Counter.prototype.addEventListeners = function () {
@@ -28,11 +34,13 @@
             });
         };
         Counter.prototype.incrementCount = function () {
-            this.count++;
-            this.setDisplay(this.count);
+            if (this.count < this.maximumCount) {
+                this.count++;
+                this.setDisplay(this.count);
+            }
         };
         Counter.prototype.decrementCount = function () {
-            if (this.count > 0) {
+            if (this.count > 0 && this.count > this.minimumCount) {
                 this.count--;
                 this.setDisplay(this.count);
             }
@@ -40,8 +48,6 @@
         Counter.prototype.setDisplay = function (value) {
             this.counterDisplay.innerHTML = value.toString();
             if (this.hiddenInput) {
-                console.log("Change!", value);
-                console.log(this.hiddenInput);
                 this.hiddenInput.setAttribute("value", value.toString());
                 this.hiddenInput.value = value.toString();
             }
@@ -59,7 +65,7 @@
          */
         function AddToBasket(node) {
             this.node = node;
-            this.counter = new Counter(node.getElementsByClassName("c-purchase__counter")[0], node.getElementsByClassName("c-purchase__count-count-input")[0]);
+            this.counter = new Counter(node.getElementsByClassName("c-purchase__counter")[0], node.getElementsByClassName("c-purchase__count-count-input")[0], 1, 100);
             this.addButton = node.getElementsByClassName("c-purchase__purchase-button")[0];
             this.addEventListeners();
         }

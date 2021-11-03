@@ -5,20 +5,27 @@ class Counter
     private counterMinus: HTMLElement;
     private counterDisplay: HTMLElement;
     private hiddenInput: HTMLInputElement;
+    private minimumCount: number;
+    private maximumCount: number;
     public count = 0;
 
 
     /** Pass in c-purchase__counter
      * 
      */
-    constructor(node: HTMLElement, hiddenInput: HTMLInputElement = null) {
+    constructor(node: HTMLElement, hiddenInput: HTMLInputElement = null, minimumCount = 0, maximumCount = 1000) {
         this.counterPlus = node.getElementsByClassName("c-purchase__counter-button--plus")[0] as HTMLElement;
         this.counterMinus = node.getElementsByClassName("c-purchase__counter-button--minus")[0] as HTMLElement;
         this.counterDisplay = node.getElementsByClassName("c-purchase__counter-count")[0] as HTMLElement;  
+        this.minimumCount = minimumCount;
+        this.count = minimumCount;
+        this.maximumCount = maximumCount;
 
         if (hiddenInput) {
             this.hiddenInput = hiddenInput;
         }
+
+        this.setDisplay(this.minimumCount);
 
         this.addEventListeners(); 
     }
@@ -38,13 +45,15 @@ class Counter
 
     private incrementCount()
     {
-        this.count++;
-        this.setDisplay(this.count);
+        if (this.count < this.maximumCount) {
+            this.count++;
+            this.setDisplay(this.count);
+        }
     }
 
     private decrementCount()
     {
-        if (this.count > 0) {
+        if (this.count > 0 && this.count > this.minimumCount ) {
             this.count--;
             this.setDisplay(this.count);
         }
@@ -54,8 +63,6 @@ class Counter
     {
         this.counterDisplay.innerHTML = value.toString();
         if (this.hiddenInput) {
-            console.log("Change!", value);
-            console.log(this.hiddenInput);
             this.hiddenInput.setAttribute("value", value.toString());
             this.hiddenInput.value = value.toString();
         }
