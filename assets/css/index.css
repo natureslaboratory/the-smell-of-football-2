@@ -631,6 +631,19 @@ h2 {
     pointer-events: none;
 }
 
+.c-cancel {
+    max-width: 500px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 4rem 2rem;
+}
+
+.c-cancel h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
 /* Media Queries */
 
 @media screen and (min-width: 1200px) {
