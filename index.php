@@ -3,15 +3,18 @@
         <section class="l-block c-purchase__background">
             <div class="l-restrict c-purchase">
                 <h3>GET YOUR SIGNED COPY NOW - £14.99</h3>
-                <div class="c-purchase__options">
-                    <div class="c-purchase__counter">
-                        <button class="c-purchase__counter-button c-purchase__counter-button--minus">-</button>
-                        <div class="c-purchase__counter-count">0</div>
-                        <button class="c-purchase__counter-button c-purchase__counter-button--plus">+</button>
+                <form action="create-checkout-session.php" method="post" id="checkout-form">
+                    <div class="c-purchase__options">
+                        <div class="c-purchase__counter">
+                            <button class="c-purchase__counter-button c-purchase__counter-button--minus">-</button>
+                            <div class="c-purchase__counter-count">0</div>
+                            <button class="c-purchase__counter-button c-purchase__counter-button--plus">+</button>
+                        </div>
+                        <input type="number" class="hidden c-purchase__count-count-input" id="book_count" name="book_count">
+                        <input type="submit" class="c-button c-purchase__purchase-button" name="checkout" value="Checkout">
+                        <p>(P&P £2.99)</p>
                     </div>
-                    <button class="c-button c-purchase__purchase-button">Add To Basket</button>
-                    <p>(P&P £2.99)</p>
-                </div>
+                </form>
             </div>
         </section>
         <section class="l-block">

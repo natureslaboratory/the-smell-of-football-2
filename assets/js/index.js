@@ -5,19 +5,25 @@
         /** Pass in c-purchase__counter
          *
          */
-        function Counter(node) {
+        function Counter(node, hiddenInput) {
+            if (hiddenInput === void 0) { hiddenInput = null; }
             this.count = 0;
             this.counterPlus = node.getElementsByClassName("c-purchase__counter-button--plus")[0];
             this.counterMinus = node.getElementsByClassName("c-purchase__counter-button--minus")[0];
             this.counterDisplay = node.getElementsByClassName("c-purchase__counter-count")[0];
+            if (hiddenInput) {
+                this.hiddenInput = hiddenInput;
+            }
             this.addEventListeners();
         }
         Counter.prototype.addEventListeners = function () {
             var _this = this;
-            this.counterPlus.addEventListener("click", function () {
+            this.counterPlus.addEventListener("click", function (e) {
+                e.preventDefault();
                 _this.incrementCount();
             });
-            this.counterMinus.addEventListener("click", function () {
+            this.counterMinus.addEventListener("click", function (e) {
+                e.preventDefault();
                 _this.decrementCount();
             });
         };
@@ -33,6 +39,12 @@
         };
         Counter.prototype.setDisplay = function (value) {
             this.counterDisplay.innerHTML = value.toString();
+            if (this.hiddenInput) {
+                console.log("Change!", value);
+                console.log(this.hiddenInput);
+                this.hiddenInput.setAttribute("value", value.toString());
+                this.hiddenInput.value = value.toString();
+            }
         };
         Counter.prototype.resetCount = function () {
             this.count = 0;
@@ -47,15 +59,14 @@
          */
         function AddToBasket(node) {
             this.node = node;
-            this.counter = new Counter(node.getElementsByClassName("c-purchase__counter")[0]);
+            this.counter = new Counter(node.getElementsByClassName("c-purchase__counter")[0], node.getElementsByClassName("c-purchase__count-count-input")[0]);
             this.addButton = node.getElementsByClassName("c-purchase__purchase-button")[0];
             this.addEventListeners();
         }
         AddToBasket.prototype.addEventListeners = function () {
-            var _this = this;
-            this.addButton.addEventListener("click", function () {
-                console.log(_this.counter.count);
-                _this.counter.resetCount();
+            this.addButton.addEventListener("click", function (e) {
+                // console.log(this.counter.count);
+                // this.counter.resetCount();
             });
         };
         return AddToBasket;
