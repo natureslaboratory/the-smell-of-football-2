@@ -1,4 +1,5 @@
 <?php 
+require "../config.php";
 
 if (!empty($_POST)) {
     $headers = [];
@@ -7,7 +8,7 @@ if (!empty($_POST)) {
 
 
     $success = mail(
-        "caleb@natureslaboratory.co.uk",
+        EMAIL,
         "Message from $_POST[name] on $_SERVER[HTTP_HOST]",
         "Name: $_POST[name]<br>Email: $_POST[email]<br>Message: " . htmlentities($_POST["message"]),
         implode("\r\n", $headers)
