@@ -81,6 +81,7 @@
     var hamburgerContainer = document.getElementById("hamburger-container");
     var hamburgerButton = document.getElementById("hamburger-button");
     var hamburgerMenu = document.getElementById("hamburger-menu");
+    var hamburgerClose = document.getElementById("hamburger-close");
     function hasAncestor(current, parent) {
         if (current.parentElement.localName == "body" || current.localName == "body") {
             return false;
@@ -92,21 +93,31 @@
             return hasAncestor(current.parentElement, parent);
         }
     }
+    function openHamburger() {
+        if (window.innerWidth > 600) {
+            hamburgerMenu.style.right = "0px";
+            hamburgerMenu.style.top = "36px";
+        }
+        hamburgerMenu.classList.add("show");
+    }
+    function closeHamburger() {
+        hamburgerMenu.classList.remove("show");
+        hamburgerMenu.style.right = "unset";
+        hamburgerMenu.style.top = "0px";
+    }
     if (hamburgerButton && hamburgerMenu) {
         hamburgerButton.addEventListener("click", function () {
             if (hamburgerMenu.classList.contains("show")) {
-                hamburgerMenu.classList.remove("show");
+                closeHamburger();
             }
             else {
-                var hamburgerContainerRect = hamburgerButton.getBoundingClientRect();
-                hamburgerMenu.classList.add("show");
-                hamburgerMenu.style.top = hamburgerContainerRect.bottom + "px";
-                hamburgerMenu.style.right = "0px";
+                openHamburger();
             }
         });
+        hamburgerClose.addEventListener("click", closeHamburger);
         document.addEventListener("click", function (e) {
             if (!hasAncestor(e.target, hamburgerContainer)) {
-                hamburgerMenu.classList.remove("show");
+                closeHamburger();
             }
         });
     }

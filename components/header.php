@@ -26,6 +26,10 @@
                         <div class="c-hamburger-button__line"></div>
                     </button>
                     <nav class="c-hamburger" id="hamburger-menu">
+                        <div class="c-hamburger__close" id="hamburger-close">
+                            <div></div>
+                            <div></div>
+                        </div>
                         <a href="/">Home</a>
                         <a href="/about-the-book">About The Book</a>
                         <a href="/contact">Contact</a>
