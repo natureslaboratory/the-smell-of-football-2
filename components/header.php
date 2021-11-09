@@ -14,9 +14,7 @@
     <header class="c-header">
         <div class="c-header__wrapper l-restrict">
             <div class="c-socials">
-                <!-- Facebook Logo --><a href="/"><img src="/assets/graphics/facebook.svg" alt="Facebook Logo"></a>
-                <!-- Twitter Logo --><a href="/"><img src="/assets/graphics/twitter.svg" alt="Twitter Logo"></a>
-                <!-- Instagram Logo --><a href="/"><img src="/assets/graphics/instagram.svg" alt="Instagram Logo"></a>
+                <!-- Twitter Logo --><a href="https://twitter.com/mickrathbone" target="_blank"><img src="/assets/graphics/twitter.svg" alt="Twitter Logo"></a>
             </div>
             <img src="/assets/graphics/logo.svg" alt="The Smell Of Football 2" class="c-header__logo">
             <div class="c-header__buttons">
