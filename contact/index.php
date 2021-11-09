@@ -8,7 +8,7 @@ if (!empty($_POST)) {
 
     $success = mail(
         "caleb@natureslaboratory.co.uk",
-        "Message from $_POST[name]",
+        "Message from $_POST[name] on $_SERVER[HTTP_HOST]",
         "Name: $_POST[name]<br>Email: $_POST[email]<br>Message: $_POST[message]",
         implode("\r\n", $headers)
     );
