@@ -6,15 +6,11 @@ if (!empty($_POST)) {
         "Test",
         "Name: $_POST[name]<br>Email: $_POST[email]<br>Message: $_POST[message]"
     );
-    if (!$success) {
-        $errorMessage = error_get_last()["message"];
-        echo "No success! <br>";
-        echo $success;
-        echo $errorMessage;
-    } else {
-        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        header("Location: $actual_link");
-    }
+
+    $uri = explode("?", $_SERVER["REQUEST_URI"])[0];
+
+    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$uri" . "?success=" . ($success ? "true" : "false");
+    header("Location: $actual_link");
 } else {
 ?>
 
@@ -22,9 +18,15 @@ if (!empty($_POST)) {
         <section class="l-block">
             <div class="l-restrict c-contact">
                 <img class="c-contact__image" src="/assets/images/book_small.jpg" alt="The Smell Of Football 2 Book">
+                <?php if (array_key_exists("success", $_GET) && $_GET["success"] == "true") {
+                    echo "<p style='align-self: start; margin-top: 2rem;'>Your message has been sent!</p>";
+                } else { ?>
                 <form class="c-form" method="POST">
                     <div class="c-form__wrapper">
                         <h2 class="c-form__title">Get In Touch</h2>
+                        <?php if (array_key_exists("success", $_GET) && $_GET["success"] == "false") {
+                            echo "<p>Something went wrong.</p>";
+                        } ?>
                         <div class="c-form__section">
                             <label class="c-form__label" for="name">Name</label>
                             <input class="c-form__input" id="name" name="name" type="text">
@@ -42,6 +44,7 @@ if (!empty($_POST)) {
                         </div>
                     </div>
                 </form>
+                <?php } ?>
             </div>
         </section>
 <?php include '../components/footer.php' ?>
