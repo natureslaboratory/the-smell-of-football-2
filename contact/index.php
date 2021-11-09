@@ -1,10 +1,16 @@
 <?php 
 
 if (!empty($_POST)) {
+    $headers = [];
+
+    $headers[] = "Content-type: text/html; charset=iso-8859-1";
+
+
     $success = mail(
         "caleb@natureslaboratory.co.uk",
-        "Test",
-        "Name: $_POST[name]<br>Email: $_POST[email]<br>Message: $_POST[message]"
+        "Message from $_POST[name]",
+        "Name: $_POST[name]<br>Email: $_POST[email]<br>Message: $_POST[message]",
+        implode("\r\n", $headers)
     );
 
     $uri = explode("?", $_SERVER["REQUEST_URI"])[0];
