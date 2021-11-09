@@ -18,7 +18,7 @@
             </div>
             <img src="/assets/graphics/logo.svg" alt="The Smell Of Football 2" class="c-header__logo">
             <div class="c-header__buttons">
-                <a href="/"><img class="c-shopping-cart" src="/assets/graphics/cart.svg" alt="cart"></a>
+                <!-- <a href="/"><img class="c-shopping-cart" src="/assets/graphics/cart.svg" alt="cart"></a> -->
                 <div class="c-hamburger__wrapper" id="hamburger-container">
                     <button class="c-hamburger-button" id="hamburger-button" aria-label="menu">
                         <div class="c-hamburger-button__line"></div>
