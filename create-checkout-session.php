@@ -1,7 +1,9 @@
 <?php
 
 require 'vendor/autoload.php';
-\Stripe\Stripe::setApiKey('sk_test_51JWzY3ISEqxZ1p1TWz1nV4WQPd5O6ep1QoVcNDKsOfBPL4f4XNVwiLzOPa6UP1uVrNdmqcKRfAQQCBZzbUuSse7w007DzEyouD');
+require "./config.php";
+
+\Stripe\Stripe::setApiKey(SECRET_KEY);
 
 header('Content-Type: application/json');
 
@@ -11,7 +13,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
   'line_items' => [
         [
         # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-        'price' => "price_1JWzdnISEqxZ1p1TQyuymYdR",
+        'price' => "price_1JtvLAA4LssErdxw5FjBESzP",
         'quantity' => $_POST["book_count"],
     ]
   ],
