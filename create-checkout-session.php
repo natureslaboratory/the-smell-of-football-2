@@ -24,6 +24,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
   "shipping_address_collection" => [
       "allowed_countries" => ["GB"]
   ],
+  "shipping_rates" => ["shr_1JtvLVA4LssErdxwhwiToaDI"],
   'success_url' => $YOUR_DOMAIN . '/success?session_id={CHECKOUT_SESSION_ID}',
   'cancel_url' => $YOUR_DOMAIN . '/cancel',
 ]);
