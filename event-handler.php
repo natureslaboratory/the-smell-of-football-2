@@ -98,7 +98,13 @@ function handleOrder($order) {
     $fields = [];
     $fields["Name"] = $order["shipping"]["name"];
     $fields["Address"] = getAddress($order);
-    $fields["Items"] = getItems($order["items"]);
+    try {
+        //code...
+        $fields["Items"] = getItems($order["items"]);
+    } catch (\Throwable $th) {
+        //throw $th;
+        $fields["Itmes"] = $th->getMessage();
+    }
 
     $message = "<table cellspacing='1' cellpadding='6' border='1'>";
 
