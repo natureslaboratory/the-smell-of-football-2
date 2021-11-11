@@ -40,7 +40,7 @@ function getAddress(\Stripe\PaymentIntent $paymentIntent)
     $postCode = $addressObject["postal_code"];
     $state = $addressObject["state"];
 
-    return print_r($paymentIntent["shipping"]["address"], true);
+    return print_r($paymentIntent["shipping"]["address"]->values, true);
 
     return `
         $line1<br>
