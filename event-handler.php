@@ -24,21 +24,25 @@ try {
 }
 
 function getAddress(\Stripe\PaymentIntent $paymentIntent) {
-    $addessObject = $paymentIntent["shipping"]["address"];
-    $line1 = $addessObject["line1"];
-    $line2 = $addessObject["line2"];
-    $city = $addessObject["city"];
-    $country = $addessObject["country"];
-    $postCode = $addessObject["postal_code"];
-    $state = $addessObject["state"];
-    return `
-    $line1<br>
-    $line2<br>
-    $city<br>
-    $country<br>
-    $postCode<br>
-    $state<br>
-    `;
+    try {
+        $addressObject = $paymentIntent["shipping"]["address"];
+        $line1 = $addressObject["line1"];
+        $line2 = $addressObject["line2"];
+        $city = $addressObject["city"];
+        $country = $addressObject["country"];
+        $postCode = $addressObject["postal_code"];
+        $state = $addressObject["state"];
+        return `
+        $line1<br>
+        $line2<br>
+        $city<br>
+        $country<br>
+        $postCode<br>
+        $state<br>
+        `;
+    } catch (Exception $e) {
+        return $e->getMessage();
+    }
 }
 
 function handlePaymentIntent(\Stripe\PaymentIntent $paymentIntent) {
