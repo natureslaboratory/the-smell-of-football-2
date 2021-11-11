@@ -58,22 +58,10 @@ function handlePaymentIntent(\Stripe\PaymentIntent $paymentIntent)
     $fields["Name"] = $paymentIntent["shipping"]["name"];
     $fields["Address"] = getAddress($paymentIntent);
 
-    $message = "<table>";
-
-    $message .= "
-    <style>
-        td {
-            padding: 1rem;
-            vertical-align: top;
-        }
-
-        td:first-child {
-            font-weight: bold;
-        }
-    </style>";
+    $message = "<table cellspacing='1' cellpadding='2' border='1'>";
 
     foreach ($fields as $key => $value) {
-        $message .= "<tr><td>$key</td><td>$value</td></tr>";
+        $message .= "<tr><td valign='top' style='font-weight: bold;'>$key</td><td>$value</td></tr>";
     }
 
     $message .= "</table>";
