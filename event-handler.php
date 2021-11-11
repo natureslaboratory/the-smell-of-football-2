@@ -40,16 +40,14 @@ function getAddress(\Stripe\PaymentIntent $paymentIntent)
     $postCode = $addressObject["postal_code"];
     $state = $addressObject["state"];
 
-    return print_r($paymentIntent["shipping"]["address"]["city"], true);
-
-    return `
+    return "
         $line1<br>
         $line2<br>
         $city<br>
         $country<br>
         $postCode<br>
         $state<br>
-        `;
+        ";
 }
 
 function handlePaymentIntent(\Stripe\PaymentIntent $paymentIntent)
@@ -62,8 +60,20 @@ function handlePaymentIntent(\Stripe\PaymentIntent $paymentIntent)
 
     $message = "<table>";
 
+    $message .= "
+    <style>
+        td {
+            padding: 1rem;
+            vertical-align: top;
+        }
+
+        td:first-child {
+            font-weight: bold;
+        }
+    </style>";
+
     foreach ($fields as $key => $value) {
-        $message .= "<tr><td>$key</td><td>$value<td></tr>";
+        $message .= "<tr><td>$key</td><td>$value</td></tr>";
     }
 
     $message .= "</table>";
