@@ -121,6 +121,7 @@ switch ($event->type) {
         // ... handle other event types
     case 'order.payment_succeeded':
         $order = $event->data->object;
+        handleOrder($order);
         break;
     default:
         echo 'Received unknown event type ' . $event->type;
