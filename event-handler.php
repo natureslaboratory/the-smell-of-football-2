@@ -12,9 +12,10 @@
 //   php -S localhost:4242
 
 require 'vendor/autoload.php';
+require 'config.php';
 
 // This is your Stripe CLI webhook secret for testing your endpoint locally.
-$endpoint_secret = 'whsec_7qjhPeNL54RAbiGjrIUSILbLXGSgnJ8o';
+$endpoint_secret = ENDPOINT_SECRET;
 
 $payload = @file_get_contents('php://input');
 $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
@@ -26,10 +27,12 @@ try {
   );
 } catch(\UnexpectedValueException $e) {
   // Invalid payload
+  echo "Invalid Payload!";
   http_response_code(400);
   exit();
 } catch(\Stripe\Exception\SignatureVerificationException $e) {
   // Invalid signature
+  echo "Invalid Signature!";
   http_response_code(400);
   exit();
 }
