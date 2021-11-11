@@ -33,6 +33,7 @@ function getAddress(\Stripe\PaymentIntent $paymentIntent) {
         $postCode = $addressObject["postal_code"];
         $state = $addressObject["state"];
         return `
+        $addressObject<br>
         $line1<br>
         $line2<br>
         $city<br>
