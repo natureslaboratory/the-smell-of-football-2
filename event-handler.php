@@ -41,9 +41,9 @@ function getAddress(\Stripe\PaymentIntent $paymentIntent)
     $state = $addressObject["state"];
 
     return "
-        $line1<br>
-        $line2<br>
-        $city<br>
+        $line1<br>" .
+        ($line2 ? "$line2<br>" : "") .
+        "$city<br>
         $country<br>
         $postCode<br>
         $state<br>
@@ -58,7 +58,7 @@ function handlePaymentIntent(\Stripe\PaymentIntent $paymentIntent)
     $fields["Name"] = $paymentIntent["shipping"]["name"];
     $fields["Address"] = getAddress($paymentIntent);
 
-    $message = "<table cellspacing='1' cellpadding='2' border='1'>";
+    $message = "<table cellspacing='1' cellpadding='6' border='1'>";
 
     foreach ($fields as $key => $value) {
         $message .= "<tr><td valign='top' style='font-weight: bold;'>$key</td><td>$value</td></tr>";
