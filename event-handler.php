@@ -57,6 +57,7 @@ function handlePaymentIntent(\Stripe\PaymentIntent $paymentIntent)
     $fields = [];
     $fields["Name"] = $paymentIntent["shipping"]["name"];
     $fields["Address"] = getAddress($paymentIntent);
+    $fields["Paid"] = 
 
     $message = "<table cellspacing='1' cellpadding='6' border='1'>";
 
@@ -77,6 +78,9 @@ switch ($event->type) {
         handlePaymentIntent($paymentIntent);
         break;
         // ... handle other event types
+    case 'order.payment_succeeded':
+        $order = $event->data->object;
+        break;
     default:
         echo 'Received unknown event type ' . $event->type;
 }
