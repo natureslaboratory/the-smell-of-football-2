@@ -97,13 +97,21 @@ function handleOrder($order) {
 
     $fields = [];
     $fields["Name"] = $order["shipping"]["name"];
-    $fields["Address"] = getAddress($order);
+
+    try {
+        //code...
+        $fields["Address"] = getAddress($order);
+    } catch (\Throwable $th) {
+        //throw $th;
+        $fields["Address"] = $th->getMessage();
+    }
+
     try {
         //code...
         $fields["Items"] = getItems($order["items"]);
     } catch (\Throwable $th) {
         //throw $th;
-        $fields["Itmes"] = $th->getMessage();
+        $fields["Items"] = $th->getMessage();
     }
 
     $message = "<table cellspacing='1' cellpadding='6' border='1'>";
