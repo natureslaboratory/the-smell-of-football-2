@@ -23,18 +23,38 @@ try {
   exit();
 }
 
+function getAddress(\Stripe\PaymentIntent $paymentIntent) {
+    $addessObject = $paymentIntent["shipping"]["address"];
+    $line1 = $addessObject["line1"];
+    $line2 = $addessObject["line2"];
+    $city = $addessObject["city"];
+    $country = $addessObject["country"];
+    $postCode = $addessObject["postal_code"];
+    $state = $addessObject["state"];
+    return `
+    $line1<br>
+    $line2<br>
+    $city<br>
+    $country<br>
+    $postCode<br>
+    $state<br>
+    `;
+}
+
 function handlePaymentIntent(\Stripe\PaymentIntent $paymentIntent) {
     $headers = ["Content-type: text/html; charset=iso-8859-1"];
 
     $fields = [];
     $fields["Name"] = $paymentIntent["shipping"]["name"];
-    $fields["Address"] = $paymentIntent["shipping"]["address"];
+    $fields["Address"] = getAddress($paymentIntent);
 
-    $message = "";
+    $message = "<table>";
 
     foreach ($fields as $key => $value) {
-        $message .= "$key: $value<br>";
+        $message .= "<tr><td>$key</td><td>$value<td></tr>";
     }
+
+    $message .= "</table>";
     mail(EMAIL, "Webhook", $message, implode("\r\n", $headers));
 }
 
