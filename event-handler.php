@@ -39,6 +39,9 @@ function getAddress(\Stripe\PaymentIntent $paymentIntent)
     $country = $addressObject["country"];
     $postCode = $addressObject["postal_code"];
     $state = $addressObject["state"];
+
+    return $addressObject["city"];
+
     return `
         $line1<br>
         $line2<br>
