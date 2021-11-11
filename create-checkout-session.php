@@ -7,7 +7,7 @@ require "./config.php";
 
 header('Content-Type: application/json');
 
-$YOUR_DOMAIN = 'http://localhost:2006';
+$YOUR_DOMAIN = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 
 $checkout_session = \Stripe\Checkout\Session::create([
   'line_items' => [
