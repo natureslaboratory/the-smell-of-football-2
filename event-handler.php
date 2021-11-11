@@ -1,20 +1,8 @@
 <?php
-// webhook.php
-//
-// Use this sample code to handle webhook events in your integration.
-//
-// 1) Paste this code into a new file (webhook.php)
-//
-// 2) Install dependencies
-//   composer require stripe/stripe-php
-//
-// 3) Run the server on http://localhost:4242
-//   php -S localhost:4242
 
 require 'vendor/autoload.php';
 require 'config.php';
 
-// This is your Stripe CLI webhook secret for testing your endpoint locally.
 $endpoint_secret = ENDPOINT_SECRET;
 
 $payload = @file_get_contents('php://input');
@@ -27,23 +15,37 @@ try {
   );
 } catch(\UnexpectedValueException $e) {
   // Invalid payload
-  echo "Invalid Payload!";
   http_response_code(400);
   exit();
 } catch(\Stripe\Exception\SignatureVerificationException $e) {
   // Invalid signature
-  echo "Invalid Signature!";
   http_response_code(400);
   exit();
 }
+
+function handlePaymentIntent(\Stripe\PaymentIntent $paymentIntent) {
+    $headers = ["Content-type: text/html; charset=iso-8859-1"];
+
+    $fields = [];
+    $fields["Name"] = $paymentIntent["shipping"]["name"];
+    $fields["Address"] = $paymentIntent["shipping"]["address"];
+
+    $message = "";
+
+    foreach ($fields as $key => $value) {
+        $message .= "$key: $value<br>";
+    }
+    mail(EMAIL, "Webhook", $message, implode("\r\n", $headers));
+}
+
+
 
 // Handle the event
 switch ($event->type) {
   case 'payment_intent.succeeded':
     $paymentIntent = $event->data->object;
-    $message = "<pre>" . $paymentIntent . "</pre>";
-    mail("caleb@natureslaboratory.co.uk", "Webhook", $message, ["Content-type: text/html; charset=iso-8859-1"]);
-
+    handlePaymentIntent($paymentIntent);
+    break;
   // ... handle other event types
   default:
     echo 'Received unknown event type ' . $event->type;
