@@ -32,7 +32,7 @@ try {
 
 function getAddress(\Stripe\PaymentIntent $paymentIntent)
 {
-    $addressObject = json_decode($paymentIntent["shipping"]["address"], true);
+    $addressObject = $paymentIntent["shipping"]["address"];
     $line1 = $addressObject["line1"];
     $line2 = $addressObject["line2"];
     $city = $addressObject["city"];
