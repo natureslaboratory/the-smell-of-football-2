@@ -3,7 +3,11 @@
 require 'vendor/autoload.php';
 require 'config.php';
 
-$endpoint_secret = ENDPOINT_SECRET;
+function isLocalhost($whitelist = ['127.0.0.1', '::1']) {
+    return in_array($_SERVER['REMOTE_ADDR'], $whitelist);
+}
+
+$endpoint_secret = isLocalhost() ? LOCALHOST_SECRET : ENDPOINT_SECRET;
 
 $payload = @file_get_contents('php://input');
 $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
