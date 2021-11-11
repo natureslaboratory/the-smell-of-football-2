@@ -30,7 +30,7 @@ try {
     exit();
 }
 
-function getAddress(\Stripe\PaymentIntent $paymentIntent)
+function getAddress($paymentIntent)
 {
     $addressObject = $paymentIntent["shipping"]["address"];
     $line1 = $addressObject["line1"];
@@ -60,7 +60,7 @@ function formatPrice($price) {
 }
 
 function getItems($items) {
-    $itemTable = "<table><thead><tr><th style='font-weight: bold;'>Item</th><thstyle='font-weight: bold;'>Quantity</th><th style='font-weight: bold;'>Price</th><th style='font-weight: bold;'>Total</th></tr></thead>";
+    $itemTable = "<table><thead><tr><th style='font-weight: bold;'>Item</th><th style='font-weight: bold;'>Quantity</th><th style='font-weight: bold;'>Price</th><th style='font-weight: bold;'>Total</th></tr></thead>";
     foreach ($items as $item) {
         $price = $item["amount"]/100;
         $price = formatPrice($price);
