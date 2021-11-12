@@ -60,7 +60,7 @@ function formatPrice($price) {
 }
 
 function getItems($items) {
-    $itemTable = "<table><thead><tr><th style='font-weight: bold;'>Item</th><th style='font-weight: bold;'>Quantity</th><th style='font-weight: bold;'>Price</th><th style='font-weight: bold;'>Total</th></tr></thead>";
+    $itemTable = "<table cellpadding='5'><thead><tr><th style='font-weight: bold;'>Item</th><th style='font-weight: bold;'>Quantity</th><th style='font-weight: bold;'>Price</th><th style='font-weight: bold;'>Total</th></tr></thead>";
     foreach ($items as $item) {
         $price = $item["amount"]/100;
         $price = formatPrice($price);
@@ -68,7 +68,7 @@ function getItems($items) {
         $total = ($item["amount"] * $item["quantity"])/100;
         $total = formatPrice($total);
 
-        $itemTable .= "<tr><td>$item[description]</td><td>$item[quantity]</td><td>$price</td><td>$total</td></tr>";
+        $itemTable .= "<tr><td>$item[description]</td><td align='center'>$item[quantity]</td><td>$price</td><td>$total</td></tr>";
     }
     $itemTable .= "</table>";
     return $itemTable;
@@ -130,7 +130,7 @@ function handleOrder($order) {
 switch ($event->type) {
     case 'payment_intent.succeeded':
         $paymentIntent = $event->data->object;
-        handlePaymentIntent($paymentIntent);
+        // handlePaymentIntent($paymentIntent);
         break;
         // ... handle other event types
     case 'order.payment_succeeded':
