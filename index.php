@@ -70,16 +70,16 @@
         <section class="l-block c-images">
             <div class="restrict c-images__container">
                 <div class="c-images__image">
-                    <img src="/assets/images/300w/IMG_0044_300w.jpg" alt="Mick Rathbone">
+                    <img loading="lazy" src="/assets/images/300w/IMG_0044_300w.jpg" alt="Mick Rathbone">
                 </div>
                 <div class="c-images__image">
-                    <img src="/assets/images/300w/IMG_0087_300w.JPG" alt="Training on the beach">
+                    <img loading="lazy" src="/assets/images/300w/IMG_0087_300w.JPG" alt="Training on the beach">
                 </div>
                 <div class="c-images__image">
-                    <img src="/assets/images/300w/IMG_0467_300w.JPG" alt="The team">
+                    <img loading="lazy" src="/assets/images/300w/IMG_0467_300w.JPG" alt="The team">
                 </div>
                 <div class="c-images__image">
-                    <img src="/assets/images/300w/IMG_0484_300w.JPG" alt="Football Pitch">
+                    <img loading="lazy" src="/assets/images/300w/IMG_0484_300w.JPG" alt="Football Pitch">
                 </div>
             </div>
         </section>
