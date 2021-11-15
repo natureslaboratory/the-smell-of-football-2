@@ -3,11 +3,14 @@
 
 require '../vendor/autoload.php';
 
+
 try {
     //code...
-    $stripe = new \Stripe\StripeClient('sk_test_51JWzY3ISEqxZ1p1TWz1nV4WQPd5O6ep1QoVcNDKsOfBPL4f4XNVwiLzOPa6UP1uVrNdmqcKRfAQQCBZzbUuSse7w007DzEyouD');
-    $session = $stripe->checkout->sessions->retrieve(trim($_GET["session_id"]));
-    $pi = $stripe->paymentIntents->retrieve($session->payment_intent);
+    if ($_GET["session_id"]) {
+        $stripe = new \Stripe\StripeClient(SECRET_KEY);
+        $session = $stripe->checkout->sessions->retrieve(trim($_GET["session_id"]));
+        $pi = $stripe->paymentIntents->retrieve($session->payment_intent);
+    }
     ?>
     <div class="l-block">
         <div class="l-restrict c-cancel">
