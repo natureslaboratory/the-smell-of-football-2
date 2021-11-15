@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/jackbarber/football.jackbarber.co.uk/
+    - export DEPLOYPATH=/home/thesmelloffoot/public_html/
     - /bin/cp -R * $DEPLOYPATH
